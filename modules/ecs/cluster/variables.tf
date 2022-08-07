@@ -37,6 +37,9 @@ locals {
   }
 
   cluster_tags = merge(
+    {
+      Name = local.cluster_name
+    }
     var.cluster_additional_tags,
     local.default_tags,
   )
