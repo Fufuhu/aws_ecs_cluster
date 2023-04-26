@@ -16,7 +16,7 @@ variable "env" {
 
 variable "cluster_additional_tags" {
   description = "クラスタの追加タグ"
-  type = map(string)
+  type        = map(string)
 
   validation {
     condition     = length(setintersection(keys(var.cluster_additional_tags), ["Name", "Env", "ServiceName", "ServiceSuffix"])) == 0
@@ -29,11 +29,11 @@ locals {
 
   default_tags = var.service_suffix == "" ? {
     ServiceName = var.service_name
-    Env = var.env
-  } : {
-    ServiceName = var.service_name
+    Env         = var.env
+    } : {
+    ServiceName   = var.service_name
     ServiceSuffix = var.service_suffix
-    Env = var.env
+    Env           = var.env
   }
 
   cluster_tags = merge(
